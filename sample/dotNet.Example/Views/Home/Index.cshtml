@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "jQuery File Download Sample";
+}
+
+@section featured {
+  <div class="jumbotron">
+    <div class="container">
+      <h1>@ViewBag.Title</h1>
+      <h2>@ViewBag.Message</h2>
+      <p>
+          To learn more about jQuery File Download visit
+          <a href="https://github.com/millman82/jQuery-File-Download" title="jQuery File Download">https://github.com/millman82/jQuery-File-Download</a>.
+          The page features <mark>source and samples</mark> to help you get the most from jQuery File Download.
+      </p>
+    </div>
+  </div>
+}
+<!-- Example row of columns -->
+<div class="row">
+  <div class="col-md-4">
+    <h2>Download via 'GET' request</h2>
+    The most common way to download a file via AJAX request.  Supports simple query parameters.
+    <p><button id="get" class="btn btn-default">Download &raquo;</button></p>
+  </div>
+  <div class="col-md-4">
+    <h2>Download via simple 'POST'</h2>
+    You can also download a file via AJAX post.  Passing a simple key/value collection of parameters.
+    <p><button id="simple_post" class="btn btn-default">Download &raquo;</button></p>
+  </div>
+  <div class="col-md-4">
+    <h2>Download via complex 'POST'</h2>
+    <p>Finally, download a file using a complicated object with one or more collections.</p>
+    <p><button id="complex_post" class="btn btn-default">Download &raquo;</button></p>
+  </div>
+</div>
+
+@section scripts {
+  <script type="text/javascript" src="~/Scripts/jQuery.download.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $('#get').click(function () {
+        $.download('file/get', { id: "5" });
+      });
+
+      $('#simple_post').click(function () {
+        var postData = { id: "5", name: "sample.pdf" };
+        $.download('file/post', postData, 'post');
+      });
+
+      $('#complex_post').click(function () {
+        var postData = { id: "5", name: "sample.pdf", array: ["value1", "value2"] };
+
+        $.download('file/complexpost', postData, 'post');
+      });
+    });
+  </script>
+}
